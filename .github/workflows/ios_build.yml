@@ -9,10 +9,10 @@ jobs:
     runs-on: macOS-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Install and run xcodegen
-      run: |
-        brew install xcodegen
-        xcodegen generate
+    # - name: Install and run xcodegen
+    #   run: |
+    #     brew install xcodegen
+    #     xcodegen generate
     - name: Run fastlane setup
       env:
         APPLE_ACCOUNT: ${{ secrets.APPLE_ACCOUNT }}

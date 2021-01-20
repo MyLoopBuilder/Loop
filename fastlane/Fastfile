@@ -4,9 +4,9 @@ default_platform :ios
 platform :ios do
   before_all do |lane, options|
 	ENV["XCODE_PROJ"] = "./Loop.xcodeproj"
-	ENV["APP_ID"] = "com.redspace.actionstest"
-	ENV["PLIST"] = "./actionstest/Info.plist"
-	ENV["APP_NAME"] = "actionstest"
+	ENV["APP_ID"] = "com.loopkit"
+	ENV["PLIST"] = "./Loop/Info.plist"
+	ENV["APP_NAME"] = "Loop"
   end
 
 	lane :everything do
@@ -42,7 +42,7 @@ platform :ios do
 
   private_lane :build do
 	match(
-		type: "appstore",
+		type: "development",
 		readonly: is_ci,
 	  	keychain_name: "loop_keychain",
 	  	keychain_password: "meow"
@@ -50,14 +50,14 @@ platform :ios do
 
 	update_project_provisioning(
 		xcodeproj: ENV["XCODE_PROJ"],
-		profile: ENV["sigh_com.redspace.actionstest_appstore_profile-path"],
+		profile: ENV["sigh_com.lookit.actionstest_development_profile-path"],
 		target_filter: "actionstest", # matches name or type of a target
 		build_configuration: "Release",
 		code_signing_identity: ENV["SIGNING_ID"]
 	)
 
 	build_app(
-		scheme: "actionstest",
+		scheme: "Loop",
 		project: ENV["XCODE_PROJ"]
 	)
 
